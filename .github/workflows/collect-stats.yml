@@ -1,3 +1,4 @@
+# Recoge cuántas visitas recibe cada herramienta y lo guarda en data/stats.json.
 name: Actualizar estadísticas de uso
 
 on:
