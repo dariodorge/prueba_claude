@@ -1,0 +1,52 @@
+name: Actualizar estadísticas de uso
+
+on:
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Leer contadores de uso y generar data/stats.json
+        run: |
+          set -e
+          mkdir -p data
+          NAMESPACE="${{ vars.STATS_NAMESPACE || 'prueba-claude-dariodorge' }}"
+          TOOLS="imc propina porcentaje contrasena interes"
+
+          {
+            echo "{"
+            echo "  \"updated_at\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\","
+            echo "  \"namespace\": \"$NAMESPACE\","
+            echo "  \"views\": {"
+            first=true
+            for t in $TOOLS; do
+              count=$(curl -sS -m 10 "https://api.countapi.xyz/get/$NAMESPACE/$t" \
+                | grep -o '"value":[0-9]*' | grep -o '[0-9]*' || true)
+              if [ -z "$count" ]; then count=0; fi
+              if [ "$first" = true ]; then first=false; else echo ","; fi
+              printf '    "%s": %s' "$t" "$count"
+            done
+            echo ""
+            echo "  }"
+            echo "}"
+          } > data/stats.json
+
+      - name: Commit si hay cambios
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/stats.json
+          if ! git diff --staged --quiet; then
+            git commit -m "Actualizar estadísticas de uso (automático)"
+            git push
+          else
+            echo "Sin cambios en las estadísticas."
+          fi

@@ -12,45 +12,41 @@ semanas o meses en generar ingresos, si es que lo hace. Lo que este proyecto sí
 es una base técnica gratuita, sin mantenimiento manual, con la monetización ya
 integrada para cuando llegue tráfico.
 
-## Puesta en marcha (una sola vez, ~10 minutos, hazlo tú)
+## Estado actual (gestionado de forma autónoma)
 
-Ningún agente puede crear cuentas de pago ni verificar tu identidad, así que estos
-pasos son manuales:
+- ✅ GitHub Pages activado, sitio publicado en `https://dariodorge.github.io/prueba_claude/`.
+- ✅ Ko-fi conectado (propinas activas).
+- ✅ Analítica de uso **sin ninguna cuenta**: cada visita a una herramienta se cuenta
+  mediante un contador público anónimo, y un GitHub Action (`.github/workflows/collect-stats.yml`)
+  lo vuelca cada día en `data/stats.json` sin intervención humana. El agente semanal
+  usa ese archivo para reordenar y podar herramientas según uso real.
+- ✅ SEO técnico (sitemap, robots.txt, Open Graph, datos estructurados) y textos de
+  marketing listos en `marketing/`, todo mantenido automáticamente.
 
-1. **Activa GitHub Pages**: en este repositorio, ve a `Settings → Pages → Source` y
-   selecciona la rama `main` (carpeta raíz `/`). El sitio quedará publicado en
-   `https://dariodorge.github.io/prueba_claude/`.
-2. **Crea una cuenta en [Ko-fi](https://ko-fi.com)** (gratis, sin verificación,
-   pagos vía PayPal/Stripe). Copia tu nombre de usuario y pégalo en
-   `assets/monetization.js` → `kofiUsername`.
-3. *(Opcional, cuando tengas algo de tráfico)* **Amazon Associates**: regístrate en
-   [afiliados.amazon.es](https://afiliados.amazon.es), consigue tu "Tracking ID" y
-   ponlo en `assets/monetization.js` → `amazonTag`.
-4. *(Opcional)* **Gumroad**: si quieres vender un pack "Pro" (por ejemplo, las
-   calculadoras en una hoja de cálculo descargable, sin anuncios), crea el producto en
-   [gumroad.com](https://gumroad.com) y pega el enlace en `gumroadProductUrl`.
-5. **Recomendado — [GoatCounter](https://www.goatcounter.com)** (gratis, sin tarjeta,
-   solo email): crea una cuenta y un "site" nuevo, y pon el código de tu site (la
-   parte antes de `.goatcounter.com`) en `assets/analytics.js` → `goatcounterSite`.
-   Sin esto, el agente no tiene forma de saber qué herramientas se usan de verdad, así
-   que no podrá reordenar ni retirar nada con criterio.
+## Lo único que no puedo automatizar, y por qué
 
-Con solo el paso 1 y 2 el sitio ya queda operativo y puede recibir propinas. El paso 5
-es el que hace falta para que las decisiones de producto (qué destacar, qué quitar)
-se basen en datos reales en vez de suposiciones.
+Solo hay una cosa que ningún agente puede hacer nunca, para cualquier producto: **sacar
+el dinero real de Ko-fi a tu banco o PayPal**. No es que no haya encontrado la forma —
+es que legalmente el titular de una cuenta de cobro tiene que ser una persona física
+verificada (normas de blanqueo de capitales/KYC), así que ese paso es tuyo por diseño,
+no por limitación técnica. Mientras tanto, Ko-fi sigue acumulando las propinas sin
+problema; solo hace falta cuando quieras retirarlas (Ko-fi → Settings → Payments).
+
+Todo lo demás — monetización adicional opcional (Amazon Associates, Gumroad), ajustes
+de producto, SEO, marketing — lo gestiono yo sin pedirte nada.
 
 ## Cómo crece el sitio solo
 
 Hay una Routine (tarea programada) que lanza un agente cada semana, sin que tengas que
 hacer nada, y que:
 
-- **Producto**: consulta las estadísticas de GoatCounter y reordena las tarjetas de
-  `index.html` de más a menos usadas; retira (o archiva) herramientas que llevan
+- **Producto**: lee `data/stats.json` (generado automáticamente) y reordena las
+  tarjetas de `index.html` de más a menos usadas; retira herramientas que llevan
   semanas sin uso real, y añade una herramienta o mejora nueva de valor genuino.
 - **Marketing**: yo no tengo cuentas en redes sociales ni puedo crear ninguna en tu
   nombre — eso sería suplantarte. Lo que sí hago: mantengo el SEO técnico al día
   (sitemap, meta tags, datos estructurados) y dejo listo en `marketing/` un texto
-  nuevo cada semana lista para copiar y pegar donde quieras compartirlo.
+  nuevo cada semana, listo para copiar y pegar donde quieras compartirlo.
 
 Puedes desactivar la Routine o cambiar lo que hace pidiéndomelo.
 
@@ -59,7 +55,9 @@ Puedes desactivar la Routine o cambiar lo que hace pidiéndomelo.
 - `index.html` — página principal con el listado de herramientas (ordenado por uso)
 - `tools/*.html` — cada calculadora (HTML + CSS + JS, sin backend)
 - `assets/style.css` — estilos compartidos
-- `assets/monetization.js` — configuración de monetización (rellénala en el paso 2-4)
-- `assets/analytics.js` — configuración de analítica de uso (paso 5)
+- `assets/monetization.js` — configuración de monetización (Ko-fi ya activo; Amazon/Gumroad opcionales)
+- `assets/analytics.js` — contador de uso, no requiere configuración
+- `.github/workflows/collect-stats.yml` — recoge las visitas cada día, automático
+- `data/stats.json` — datos de uso actuales, generados automáticamente
 - `sitemap.xml` / `robots.txt` — para que Google y otros buscadores indexen el sitio
 - `marketing/` — textos ya redactados, listos para publicar donde tú decidas
