@@ -29,18 +29,37 @@ pasos son manuales:
 4. *(Opcional)* **Gumroad**: si quieres vender un pack "Pro" (por ejemplo, las
    calculadoras en una hoja de cálculo descargable, sin anuncios), crea el producto en
    [gumroad.com](https://gumroad.com) y pega el enlace en `gumroadProductUrl`.
+5. **Recomendado — [GoatCounter](https://www.goatcounter.com)** (gratis, sin tarjeta,
+   solo email): crea una cuenta y un "site" nuevo, y pon el código de tu site (la
+   parte antes de `.goatcounter.com`) en `assets/analytics.js` → `goatcounterSite`.
+   Sin esto, el agente no tiene forma de saber qué herramientas se usan de verdad, así
+   que no podrá reordenar ni retirar nada con criterio.
 
-Con solo el paso 1 y 2 el sitio ya queda operativo y puede recibir propinas.
+Con solo el paso 1 y 2 el sitio ya queda operativo y puede recibir propinas. El paso 5
+es el que hace falta para que las decisiones de producto (qué destacar, qué quitar)
+se basen en datos reales en vez de suposiciones.
 
 ## Cómo crece el sitio solo
 
-Hay una Routine (tarea programada) configurada para lanzar un agente cada semana que
-añade una herramienta o artículo nuevo y lo publica automáticamente, sin que tengas
-que hacer nada. Puedes desactivarla o cambiar la frecuencia cuando quieras pidiéndomelo.
+Hay una Routine (tarea programada) que lanza un agente cada semana, sin que tengas que
+hacer nada, y que:
+
+- **Producto**: consulta las estadísticas de GoatCounter y reordena las tarjetas de
+  `index.html` de más a menos usadas; retira (o archiva) herramientas que llevan
+  semanas sin uso real, y añade una herramienta o mejora nueva de valor genuino.
+- **Marketing**: yo no tengo cuentas en redes sociales ni puedo crear ninguna en tu
+  nombre — eso sería suplantarte. Lo que sí hago: mantengo el SEO técnico al día
+  (sitemap, meta tags, datos estructurados) y dejo listo en `marketing/` un texto
+  nuevo cada semana lista para copiar y pegar donde quieras compartirlo.
+
+Puedes desactivar la Routine o cambiar lo que hace pidiéndomelo.
 
 ## Estructura
 
-- `index.html` — página principal con el listado de herramientas
+- `index.html` — página principal con el listado de herramientas (ordenado por uso)
 - `tools/*.html` — cada calculadora (HTML + CSS + JS, sin backend)
 - `assets/style.css` — estilos compartidos
 - `assets/monetization.js` — configuración de monetización (rellénala en el paso 2-4)
+- `assets/analytics.js` — configuración de analítica de uso (paso 5)
+- `sitemap.xml` / `robots.txt` — para que Google y otros buscadores indexen el sitio
+- `marketing/` — textos ya redactados, listos para publicar donde tú decidas

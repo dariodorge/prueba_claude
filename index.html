@@ -5,7 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Herramientas Rápidas — Calculadoras y conversores gratis online</title>
   <meta name="description" content="Calculadoras y conversores gratuitos, rápidos y sin registro: IMC, propinas, porcentajes, contraseñas seguras y más." />
+  <link rel="canonical" href="https://dariodorge.github.io/prueba_claude/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Herramientas Rápidas — Calculadoras y conversores gratis online" />
+  <meta property="og:description" content="Calculadoras y conversores gratuitos, rápidos y sin registro: IMC, propinas, porcentajes, contraseñas seguras y más." />
+  <meta property="og:url" content="https://dariodorge.github.io/prueba_claude/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Herramientas Rápidas — Calculadoras y conversores gratis online" />
+  <meta name="twitter:description" content="Calculadoras y conversores gratuitos, rápidos y sin registro: IMC, propinas, porcentajes, contraseñas seguras y más." />
   <link rel="stylesheet" href="assets/style.css" />
+  <script src="assets/analytics.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Herramientas Rápidas",
+    "url": "https://dariodorge.github.io/prueba_claude/",
+    "description": "Calculadoras y conversores gratuitos, rápidos y sin registro."
+  }
+  </script>
 </head>
 <body>
   <div class="wrap">
@@ -19,28 +37,33 @@
     <h1>Calculadoras y conversores gratis, sin registro</h1>
     <p class="lead">Herramientas online rápidas que funcionan directamente en tu navegador. Sin cuentas, sin instalar nada, sin complicaciones.</p>
 
+    <!--
+      ORDEN: las tarjetas se mantienen ordenadas de más a menos usadas según
+      las estadísticas de GoatCounter (ver assets/analytics.js y README.md).
+      El agente semanal reordena este bloque; no reordenar a mano sin motivo.
+    -->
     <div id="herramientas" class="tool-grid">
-      <a class="tool-card" href="tools/imc.html">
+      <a class="tool-card" id="tool-imc" href="tools/imc.html">
         <div class="icon">⚖️</div>
         <h3>Calculadora de IMC</h3>
         <p>Calcula tu Índice de Masa Corporal al instante.</p>
       </a>
-      <a class="tool-card" href="tools/propina.html">
+      <a class="tool-card" id="tool-propina" href="tools/propina.html">
         <div class="icon">🧾</div>
         <h3>Calculadora de propina</h3>
         <p>Reparte la cuenta y calcula la propina en segundos.</p>
       </a>
-      <a class="tool-card" href="tools/porcentaje.html">
+      <a class="tool-card" id="tool-porcentaje" href="tools/porcentaje.html">
         <div class="icon">%</div>
         <h3>Calculadora de porcentajes</h3>
         <p>Descuentos, aumentos y porcentajes entre cifras.</p>
       </a>
-      <a class="tool-card" href="tools/contrasena.html">
+      <a class="tool-card" id="tool-contrasena" href="tools/contrasena.html">
         <div class="icon">🔐</div>
         <h3>Generador de contraseñas</h3>
         <p>Contraseñas seguras y aleatorias al momento.</p>
       </a>
-      <a class="tool-card" href="tools/interes.html">
+      <a class="tool-card" id="tool-interes" href="tools/interes.html">
         <div class="icon">📈</div>
         <h3>Interés compuesto</h3>
         <p>Simula el crecimiento de tus ahorros o inversiones.</p>

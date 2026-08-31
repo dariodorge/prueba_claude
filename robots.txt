@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dariodorge.github.io/prueba_claude/sitemap.xml
