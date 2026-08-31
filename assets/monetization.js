@@ -2,7 +2,7 @@
 // Rellena estos valores con tus propias cuentas (ver README.md, sección "Puesta en marcha").
 // Mientras estén vacíos, los bloques correspondientes simplemente no se muestran.
 window.MONETIZATION = {
-  kofiUsername: "",       // ej: "tuusuario" -> https://ko-fi.com/tuusuario
+  kofiUsername: "dariodorge",       // ej: "tuusuario" -> https://ko-fi.com/tuusuario
   amazonTag: "",          // ej: "tuweb-21" (Amazon Associates España)
   gumroadProductUrl: "",  // ej: "https://tuusuario.gumroad.com/l/pro-pack"
 };
