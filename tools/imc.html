@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calculadora de IMC (Índice de Masa Corporal) gratis</title>
+  <meta name="description" content="Calcula tu Índice de Masa Corporal (IMC) gratis y al instante a partir de tu peso y altura." />
+  <link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="site">
+      <a class="brand" href="../">🧮 Herramientas Rápidas</a>
+      <nav><a href="../">Inicio</a></nav>
+    </header>
+
+    <h1>⚖️ Calculadora de IMC</h1>
+    <p class="lead">Introduce tu peso y altura para calcular tu Índice de Masa Corporal.</p>
+
+    <div class="card">
+      <label for="peso">Peso (kg)</label>
+      <input type="number" id="peso" placeholder="70" min="1" step="0.1" />
+
+      <label for="altura">Altura (cm)</label>
+      <input type="number" id="altura" placeholder="175" min="1" step="0.1" />
+
+      <button onclick="calcular()">Calcular IMC</button>
+
+      <div class="result" id="resultado"></div>
+    </div>
+
+    <div class="card">
+      <h2>¿Qué significa el resultado?</h2>
+      <p>El IMC es una estimación orientativa, no un diagnóstico médico. Los rangos habituales de la OMS son:</p>
+      <ul>
+        <li><strong>Menos de 18.5:</strong> Bajo peso</li>
+        <li><strong>18.5 – 24.9:</strong> Peso normal</li>
+        <li><strong>25 – 29.9:</strong> Sobrepeso</li>
+        <li><strong>30 o más:</strong> Obesidad</li>
+      </ul>
+      <div class="affiliate-box" id="affiliate-box"></div>
+    </div>
+
+    <div class="support" id="support-box"></div>
+
+    <footer class="site">
+      <p><a href="../">← Volver a todas las herramientas</a></p>
+    </footer>
+  </div>
+
+  <script src="../assets/monetization.js"></script>
+  <script>
+    function calcular() {
+      const peso = parseFloat(document.getElementById("peso").value);
+      const alturaCm = parseFloat(document.getElementById("altura").value);
+      const box = document.getElementById("resultado");
+      if (!peso || !alturaCm) {
+        box.textContent = "Introduce un peso y una altura válidos.";
+        box.classList.add("show");
+        return;
+      }
+      const alturaM = alturaCm / 100;
+      const imc = peso / (alturaM * alturaM);
+      let categoria = "Peso normal";
+      if (imc < 18.5) categoria = "Bajo peso";
+      else if (imc < 25) categoria = "Peso normal";
+      else if (imc < 30) categoria = "Sobrepeso";
+      else categoria = "Obesidad";
+      box.textContent = `Tu IMC es ${imc.toFixed(1)} — ${categoria}`;
+      box.classList.add("show");
+      renderAffiliateBox("báscula digital de baño", "básculas digitales de baño");
+    }
+  </script>
+</body>
+</html>

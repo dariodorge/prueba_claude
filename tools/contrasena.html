@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Generador de contraseñas seguras gratis</title>
+  <meta name="description" content="Genera contraseñas aleatorias y seguras al instante, directamente en tu navegador. Nada se envía a ningún servidor." />
+  <link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="site">
+      <a class="brand" href="../">🧮 Herramientas Rápidas</a>
+      <nav><a href="../">Inicio</a></nav>
+    </header>
+
+    <h1>🔐 Generador de contraseñas</h1>
+    <p class="lead">Genera una contraseña aleatoria y segura. Todo ocurre en tu navegador: no se envía ni se guarda nada.</p>
+
+    <div class="card">
+      <label for="longitud">Longitud: <span id="longitudVal">16</span></label>
+      <input type="range" id="longitud" min="6" max="64" value="16" oninput="document.getElementById('longitudVal').textContent = this.value" />
+
+      <label><input type="checkbox" id="mayus" checked style="width:auto; display:inline-block; margin-right:6px;" /> Mayúsculas (A-Z)</label>
+      <label><input type="checkbox" id="numeros" checked style="width:auto; display:inline-block; margin-right:6px;" /> Números (0-9)</label>
+      <label><input type="checkbox" id="simbolos" checked style="width:auto; display:inline-block; margin-right:6px;" /> Símbolos (!@#$…)</label>
+
+      <button onclick="generar()">Generar contraseña</button>
+
+      <div class="result" id="resultado" style="word-break: break-all;"></div>
+    </div>
+
+    <div class="card">
+      <h2>Consejos de seguridad</h2>
+      <ul>
+        <li>Usa una contraseña distinta para cada servicio.</li>
+        <li>Guárdalas en un gestor de contraseñas, nunca en texto plano.</li>
+        <li>Cuanto más larga, más segura: prioriza longitud sobre complejidad.</li>
+      </ul>
+    </div>
+
+    <div class="support" id="support-box"></div>
+
+    <footer class="site">
+      <p><a href="../">← Volver a todas las herramientas</a></p>
+    </footer>
+  </div>
+
+  <script src="../assets/monetization.js"></script>
+  <script>
+    function generar() {
+      const longitud = parseInt(document.getElementById("longitud").value, 10);
+      const usarMayus = document.getElementById("mayus").checked;
+      const usarNumeros = document.getElementById("numeros").checked;
+      const usarSimbolos = document.getElementById("simbolos").checked;
+
+      let chars = "abcdefghijklmnopqrstuvwxyz";
+      if (usarMayus) chars += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      if (usarNumeros) chars += "0123456789";
+      if (usarSimbolos) chars += "!@#$%^&*()-_=+[]{}";
+
+      const randomValues = new Uint32Array(longitud);
+      crypto.getRandomValues(randomValues);
+      let pass = "";
+      for (let i = 0; i < longitud; i++) {
+        pass += chars[randomValues[i] % chars.length];
+      }
+
+      const box = document.getElementById("resultado");
+      box.textContent = pass;
+      box.classList.add("show");
+    }
+  </script>
+</body>
+</html>
