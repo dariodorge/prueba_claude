@@ -1,0 +1,46 @@
+# Avisa a Bing/Yandex (protocolo IndexNow) de que hay páginas nuevas o
+# actualizadas, sin necesidad de ninguna cuenta ni panel de control.
+name: Avisar a buscadores (IndexNow)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "index.html"
+      - "tools/**"
+      - "sitemap.xml"
+  workflow_dispatch: {}
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Enviar sitemap a IndexNow
+        run: |
+          set -e
+          HOST="dariodorge.github.io"
+          KEY="d9c50c7f6ccfff22b9809fb181f6dcf6"
+          KEY_LOCATION="https://dariodorge.github.io/prueba_claude/${KEY}.txt"
+
+          urls=$(grep -oP '(?<=<loc>)[^<]+' sitemap.xml | python3 -c "
+          import sys, json
+          urls = [l.strip() for l in sys.stdin if l.strip()]
+          print(json.dumps(urls))
+          ")
+
+          payload=$(python3 -c "
+          import json
+          print(json.dumps({
+              'host': '$HOST',
+              'key': '$KEY',
+              'keyLocation': '$KEY_LOCATION',
+              'urlList': $urls,
+          }))
+          ")
+
+          curl -sS -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d "$payload" \
+            -o /dev/null -w "IndexNow respondió: %{http_code}\n" || true

@@ -68,8 +68,11 @@ las propinas sin problema mientras tanto.
 - `assets/monetization.js` — configuración de monetización
 - `assets/analytics.js` — contador de uso, no requiere configuración
 - `.github/workflows/collect-stats.yml` — recoge visitas cada día, automático
+- `.github/workflows/indexnow.yml` — avisa a Bing/Yandex de páginas nuevas (protocolo
+  IndexNow, sin cuenta) cada vez que cambia el contenido
 - `data/stats.json` — datos de uso actuales, generados automáticamente
 - `sitemap.xml` / `robots.txt` — indexación en buscadores
+- `*.txt` en la raíz (nombre largo hexadecimal) — clave de verificación de IndexNow, no borrar
 - `marketing/` — textos ya redactados, listos para publicar
 
 </details>
