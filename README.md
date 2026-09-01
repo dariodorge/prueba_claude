@@ -1,63 +1,75 @@
-# Herramientas Rápidas
+# 🧮 Herramientas Rápidas
 
-Sitio web gratuito de calculadoras y conversores online (IMC, propina, porcentajes,
-contraseñas seguras, interés compuesto), alojado gratis en GitHub Pages.
+**Calculadoras y conversores online, gratis, sin registro y sin anuncios invasivos.**
 
-**Objetivo del proyecto:** generar unos ingresos pequeños y recurrentes (donaciones,
-afiliación, un producto digital) que puedan compensar el coste de una suscripción
-mensual, usando contenido y mantenimiento automatizados por IA.
+👉 **https://dariodorge.github.io/prueba_claude/**
 
-**Aviso honesto:** esto no es dinero garantizado. Un sitio nuevo sin tráfico tarda
-semanas o meses en generar ingresos, si es que lo hace. Lo que este proyecto sí ofrece
-es una base técnica gratuita, sin mantenimiento manual, con la monetización ya
-integrada para cuando llegue tráfico.
+Cansado de webs de calculadoras llenas de popups y anuncios agresivos, este proyecto
+reúne herramientas del día a día que funcionan **enteramente en tu navegador** — nada
+se envía a ningún servidor, no hace falta cuenta ni cookies de rastreo.
 
-## Estado actual (gestionado de forma autónoma)
+## Herramientas disponibles
 
-- ✅ GitHub Pages activado, sitio publicado en `https://dariodorge.github.io/prueba_claude/`.
-- ✅ Ko-fi conectado (propinas activas).
-- ✅ Analítica de uso **sin ninguna cuenta**: cada visita a una herramienta se cuenta
-  mediante un contador público anónimo, y un GitHub Action (`.github/workflows/collect-stats.yml`)
-  lo vuelca cada día en `data/stats.json` sin intervención humana. El agente semanal
-  usa ese archivo para reordenar y podar herramientas según uso real.
-- ✅ SEO técnico (sitemap, robots.txt, Open Graph, datos estructurados) y textos de
-  marketing listos en `marketing/`, todo mantenido automáticamente.
+| Herramienta | Para qué sirve |
+|---|---|
+| ⚖️ [Calculadora de IMC](https://dariodorge.github.io/prueba_claude/tools/imc.html) | Índice de Masa Corporal al instante |
+| 🧾 [Calculadora de propina](https://dariodorge.github.io/prueba_claude/tools/propina.html) | Reparte la cuenta entre varias personas |
+| % [Calculadora de porcentajes](https://dariodorge.github.io/prueba_claude/tools/porcentaje.html) | Descuentos, subidas y porcentajes entre cifras |
+| 🔐 [Generador de contraseñas](https://dariodorge.github.io/prueba_claude/tools/contrasena.html) | Contraseñas seguras y aleatorias |
+| 📈 [Interés compuesto](https://dariodorge.github.io/prueba_claude/tools/interes.html) | Simula el crecimiento de ahorros e inversiones |
 
-## Lo único que no puedo automatizar, y por qué
+Se añaden herramientas nuevas cada semana. Si echas en falta alguna, abre un
+[issue](https://github.com/dariodorge/prueba_claude/issues) contando qué necesitas.
 
-Solo hay una cosa que ningún agente puede hacer nunca, para cualquier producto: **sacar
-el dinero real de Ko-fi a tu banco o PayPal**. No es que no haya encontrado la forma —
-es que legalmente el titular de una cuenta de cobro tiene que ser una persona física
-verificada (normas de blanqueo de capitales/KYC), así que ese paso es tuyo por diseño,
-no por limitación técnica. Mientras tanto, Ko-fi sigue acumulando las propinas sin
-problema; solo hace falta cuando quieras retirarlas (Ko-fi → Settings → Payments).
+## Por qué es gratis
 
-Todo lo demás — monetización adicional opcional (Amazon Associates, Gumroad), ajustes
-de producto, SEO, marketing — lo gestiono yo sin pedirte nada.
+El proyecto se sostiene con propinas voluntarias (botón "invítame a un café" en cada
+página) y, más adelante, enlaces de afiliado en herramientas donde tenga sentido.
+Nunca vas a tener que pagar para usar ninguna calculadora.
 
-## Cómo crece el sitio solo
+## Código abierto
 
-Hay una Routine (tarea programada) que lanza un agente cada semana, sin que tengas que
-hacer nada, y que:
+Todo el código es HTML/CSS/JS plano, sin frameworks ni build step — cualquiera puede
+leerlo, copiarlo o proponer mejoras. Si quieres añadir tu propia herramienta, un PR
+siguiendo el patrón de `tools/*.html` es bienvenido.
 
-- **Producto**: lee `data/stats.json` (generado automáticamente) y reordena las
-  tarjetas de `index.html` de más a menos usadas; retira herramientas que llevan
-  semanas sin uso real, y añade una herramienta o mejora nueva de valor genuino.
-- **Marketing**: yo no tengo cuentas en redes sociales ni puedo crear ninguna en tu
-  nombre — eso sería suplantarte. Lo que sí hago: mantengo el SEO técnico al día
-  (sitemap, meta tags, datos estructurados) y dejo listo en `marketing/` un texto
-  nuevo cada semana, listo para copiar y pegar donde quieras compartirlo.
+---
 
-Puedes desactivar la Routine o cambiar lo que hace pidiéndomelo.
+## Notas de mantenimiento (para quien opera el proyecto)
 
-## Estructura
+<details>
+<summary>Cómo está automatizado este proyecto</summary>
 
-- `index.html` — página principal con el listado de herramientas (ordenado por uso)
+**Objetivo:** generar unos ingresos pequeños y recurrentes que compensen el coste de
+una suscripción mensual, con contenido y mantenimiento gestionados por un agente de
+IA de forma autónoma. No es dinero garantizado: un sitio nuevo sin tráfico tarda en
+generar ingresos, si es que lo hace.
+
+**Automatizado sin intervención humana:**
+- GitHub Pages sirve el sitio desde `main`.
+- Ko-fi conectado para propinas (`assets/monetization.js`).
+- Analítica de uso sin ninguna cuenta: cada visita se cuenta con un contador público
+  anónimo; un GitHub Action diario (`.github/workflows/collect-stats.yml`) vuelca los
+  datos en `data/stats.json`, y un agente semanal reordena/poda herramientas según uso
+  real y añade valor nuevo.
+- SEO técnico (sitemap, robots.txt, Open Graph, datos estructurados) mantenido al día.
+- Textos de marketing listos para copiar/pegar en `marketing/`.
+
+**Lo único que no se puede automatizar:** sacar el dinero real de Ko-fi a un banco o
+PayPal. Por ley, el titular de una cuenta de cobro tiene que ser una persona física
+verificada (normas KYC), así que ese paso concreto siempre es manual. Ko-fi acumula
+las propinas sin problema mientras tanto.
+
+### Estructura
+
+- `index.html` — portada con el listado de herramientas (ordenado por uso)
 - `tools/*.html` — cada calculadora (HTML + CSS + JS, sin backend)
 - `assets/style.css` — estilos compartidos
-- `assets/monetization.js` — configuración de monetización (Ko-fi ya activo; Amazon/Gumroad opcionales)
+- `assets/monetization.js` — configuración de monetización
 - `assets/analytics.js` — contador de uso, no requiere configuración
-- `.github/workflows/collect-stats.yml` — recoge las visitas cada día, automático
+- `.github/workflows/collect-stats.yml` — recoge visitas cada día, automático
 - `data/stats.json` — datos de uso actuales, generados automáticamente
-- `sitemap.xml` / `robots.txt` — para que Google y otros buscadores indexen el sitio
-- `marketing/` — textos ya redactados, listos para publicar donde tú decidas
+- `sitemap.xml` / `robots.txt` — indexación en buscadores
+- `marketing/` — textos ya redactados, listos para publicar
+
+</details>
