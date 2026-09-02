@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Widgets gratis para tu web — Herramientas Rápidas</title>
+  <meta name="description" content="Incrusta gratis una calculadora de IMC (y más próximamente) en tu propia web con dos líneas de código. Sin registro, sin coste." />
+  <link rel="canonical" href="https://dariodorge.github.io/prueba_claude/embed.html" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <script src="assets/analytics.js"></script>
+</head>
+<body>
+  <div class="wrap">
+    <header class="site">
+      <a class="brand" href="/">🧮 Herramientas Rápidas</a>
+      <nav><a href="/">Inicio</a></nav>
+    </header>
+
+    <h1>🧩 Widgets gratis para tu web</h1>
+    <p class="lead">¿Tienes un blog, una web de fitness o de nutrición? Incrusta esta calculadora de IMC directamente en tu página, gratis y sin registro. Solo pega este código donde quieras que aparezca:</p>
+
+    <div class="card">
+      <pre style="overflow-x:auto; background:var(--bg); padding:14px; border-radius:8px; font-size:0.85rem;"><code>&lt;div data-hr-widget="imc"&gt;&lt;/div&gt;
+&lt;script src="https://dariodorge.github.io/prueba_claude/embed/imc.js" async&gt;&lt;/script&gt;</code></pre>
+      <p style="margin-top:14px;">Resultado (vista previa en vivo):</p>
+      <div data-hr-widget="imc"></div>
+    </div>
+
+    <div class="card">
+      <h2>Condiciones</h2>
+      <ul>
+        <li>Gratis para cualquier web, personal o comercial.</li>
+        <li>Se pide mantener el pequeño enlace de crédito ("Widget de Herramientas Rápidas") que lleva el propio widget — es la única condición.</li>
+        <li>El widget corre en el navegador del visitante; no recogemos datos de quien lo usa.</li>
+      </ul>
+      <p>Irán apareciendo más widgets (propina, porcentajes...) — si necesitas uno en concreto, abre un
+      <a href="https://github.com/dariodorge/prueba_claude/issues" target="_blank" rel="noopener">issue en GitHub</a>.</p>
+    </div>
+
+    <footer class="site">
+      <p><a href="/">← Volver a todas las herramientas</a></p>
+    </footer>
+  </div>
+
+  <script src="embed/imc.js" async></script>
+</body>
+</html>

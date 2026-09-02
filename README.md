@@ -17,9 +17,15 @@ se envía a ningún servidor, no hace falta cuenta ni cookies de rastreo.
 | % [Calculadora de porcentajes](https://dariodorge.github.io/prueba_claude/tools/porcentaje.html) | Descuentos, subidas y porcentajes entre cifras |
 | 🔐 [Generador de contraseñas](https://dariodorge.github.io/prueba_claude/tools/contrasena.html) | Contraseñas seguras y aleatorias |
 | 📈 [Interés compuesto](https://dariodorge.github.io/prueba_claude/tools/interes.html) | Simula el crecimiento de ahorros e inversiones |
+| 🔳 [Generador de código QR](https://dariodorge.github.io/prueba_claude/tools/qr.html) | Crea un QR a partir de un texto o enlace |
 
 Se añaden herramientas nuevas cada semana. Si echas en falta alguna, abre un
 [issue](https://github.com/dariodorge/prueba_claude/issues) contando qué necesitas.
+
+## 🧩 ¿Tienes tu propia web?
+
+Puedes [incrustar gratis nuestra calculadora de IMC](https://dariodorge.github.io/prueba_claude/embed.html)
+en la tuya con dos líneas de código — solo pedimos mantener el enlace de crédito.
 
 ## Por qué es gratis
 
@@ -40,10 +46,19 @@ siguiendo el patrón de `tools/*.html` es bienvenido.
 <details>
 <summary>Cómo está automatizado este proyecto</summary>
 
-**Objetivo:** generar unos ingresos pequeños y recurrentes que compensen el coste de
-una suscripción mensual, con contenido y mantenimiento gestionados por un agente de
-IA de forma autónoma. No es dinero garantizado: un sitio nuevo sin tráfico tarda en
-generar ingresos, si es que lo hace.
+**Objetivo:** generar unos ingresos pequeños y recurrentes, con contenido y
+mantenimiento gestionados por un agente de IA de forma autónoma. No es dinero
+garantizado: un sitio nuevo sin tráfico tarda en generar ingresos, si es que lo hace.
+
+**Estrategia de crecimiento 100% autónoma (sin redes sociales, sin cuentas nuevas):**
+el agente no tiene acceso a redes sociales ni puede publicar en nombre del propietario,
+así que la única distribución real disponible es SEO + el propio ecosistema de GitHub.
+Por eso el mix de herramientas se inclina hacia utilidades para desarrolladores/webmasters
+(el público que más navega y enlaza cosas en GitHub) y hacia **widgets embebibles**
+(`embed/`, ver `embed.html`) que otras webs pueden incrustar — cada incrustación genera
+un enlace de vuelta y tráfico de referencia, sin que nadie tenga que compartir nada
+manualmente. Es una apuesta a más largo plazo que las propinas directas, pero es la
+única palanca de crecimiento verdaderamente autónoma disponible.
 
 **Automatizado sin intervención humana:**
 - GitHub Pages sirve el sitio desde `main`.
@@ -74,5 +89,7 @@ las propinas sin problema mientras tanto.
 - `sitemap.xml` / `robots.txt` — indexación en buscadores
 - `*.txt` en la raíz (nombre largo hexadecimal) — clave de verificación de IndexNow, no borrar
 - `marketing/` — textos ya redactados, listos para publicar
+- `embed/` — widgets embebibles (JS) que otras webs pueden incrustar
+- `embed.html` — página que explica cómo incrustar los widgets
 
 </details>

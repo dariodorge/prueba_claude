@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Generador de código QR gratis — sin registro</title>
+  <meta name="description" content="Genera un código QR gratis a partir de un texto, enlace o dato de contacto. Todo se crea en tu navegador, sin subir nada a ningún servidor." />
+  <link rel="canonical" href="https://dariodorge.github.io/prueba_claude/tools/qr.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Generador de código QR gratis — sin registro" />
+  <meta property="og:description" content="Genera un código QR gratis a partir de un texto, enlace o dato de contacto. Todo se crea en tu navegador, sin subir nada a ningún servidor." />
+  <meta name="twitter:card" content="summary" />
+  <link rel="stylesheet" href="../assets/style.css" />
+  <script src="../assets/analytics.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+  <div class="wrap">
+    <header class="site">
+      <a class="brand" href="../">🧮 Herramientas Rápidas</a>
+      <nav><a href="../">Inicio</a></nav>
+    </header>
+
+    <h1>🔳 Generador de código QR</h1>
+    <p class="lead">Escribe un texto, una URL o un dato de contacto y genera su código QR al instante. Se crea en tu navegador; nada se envía a ningún servidor.</p>
+
+    <div class="card">
+      <label for="texto">Texto o enlace</label>
+      <input type="text" id="texto" placeholder="https://ejemplo.com" />
+
+      <button onclick="generar()">Generar QR</button>
+
+      <div id="qr-contenedor" style="margin-top:20px; display:none; text-align:center;">
+        <div id="qr" style="display:inline-block; padding:16px; background:white; border-radius:10px;"></div>
+        <p style="margin-top:12px;"><a href="#" id="descargar" download="codigo-qr.png">Descargar imagen</a></p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Usos habituales</h2>
+      <p>Compartir un enlace sin tener que escribirlo, poner tu WiFi o contacto en una tarjeta, enlazar tu web en un cartel o menú, o simplemente pasar texto entre el móvil y el ordenador.</p>
+    </div>
+
+    <div class="support" id="support-box"></div>
+
+    <footer class="site">
+      <p><a href="../">← Volver a todas las herramientas</a></p>
+    </footer>
+  </div>
+
+  <script>
+    let qrcode = null;
+
+    function generar() {
+      const texto = document.getElementById("texto").value.trim();
+      if (!texto) return;
+
+      const contenedor = document.getElementById("qr");
+      contenedor.innerHTML = "";
+      qrcode = new QRCode(contenedor, {
+        text: texto,
+        width: 220,
+        height: 220,
+        colorDark: "#1c1c28",
+        colorLight: "#ffffff",
+      });
+
+      document.getElementById("qr-contenedor").style.display = "block";
+
+      setTimeout(() => {
+        const img = contenedor.querySelector("img") || contenedor.querySelector("canvas");
+        if (img && img.toDataURL) {
+          document.getElementById("descargar").href = img.toDataURL("image/png");
+        } else if (img && img.src) {
+          document.getElementById("descargar").href = img.src;
+        }
+      }, 100);
+    }
+  </script>
+</body>
+</html>

@@ -21,7 +21,9 @@ jobs:
           set -e
           mkdir -p data
           NAMESPACE="${{ vars.STATS_NAMESPACE || 'prueba-claude-dariodorge' }}"
-          TOOLS="imc propina porcentaje contrasena interes"
+          # Se deriva automáticamente de tools/*.html para no tener que tocar
+          # este archivo cada vez que se añade o retira una herramienta.
+          TOOLS=$(ls tools/*.html | xargs -n1 basename | sed 's/\.html$//')
 
           {
             echo "{"
