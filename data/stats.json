@@ -1,11 +1,12 @@
 {
-  "updated_at": "2026-09-02T06:07:16Z",
+  "updated_at": "2026-09-03T06:08:50Z",
   "namespace": "prueba-claude-dariodorge",
   "views": {
-    "imc": 0,
-    "propina": 0,
-    "porcentaje": 0,
     "contrasena": 0,
-    "interes": 0
+    "imc": 0,
+    "interes": 0,
+    "porcentaje": 0,
+    "propina": 0,
+    "qr": 0
   }
 }
